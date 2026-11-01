@@ -1,0 +1,80 @@
+@CricketAnalyzer.API_HostAddress = http://localhost:5118
+
+### 1. Search CricAPI directly for players (e.g. Kohli, Rohit, Cummins)
+GET {{CricketAnalyzer.API_HostAddress}}/api/players/external-search?query=Kohli
+Accept: application/json
+
+###
+
+### 2. Import player from CricAPI into your PostgreSQL database (with full stats & photo)
+POST {{CricketAnalyzer.API_HostAddress}}/api/players/import/c61d247d-7f77-452c-b495-2813a9cd0ac4
+Accept: application/json
+
+###
+
+### 3. Get all players from your database (includes statistics)
+GET {{CricketAnalyzer.API_HostAddress}}/api/players
+Accept: application/json
+
+###
+
+### 4. Search local database players by name or country
+GET {{CricketAnalyzer.API_HostAddress}}/api/players?search=Kohli
+Accept: application/json
+
+###
+
+### 5. Get local player by ID (includes career statistics)
+GET {{CricketAnalyzer.API_HostAddress}}/api/players/1
+Accept: application/json
+
+###
+
+### 6. Create a player manually
+POST {{CricketAnalyzer.API_HostAddress}}/api/players
+Content-Type: application/json
+
+{
+  "name": "Ben Stokes",
+  "country": "England",
+  "role": "All-Rounder",
+  "battingStyle": "Left-hand bat",
+  "bowlingStyle": "Right-arm fast-medium"
+}
+
+###
+
+### 7. AI Analysis: Generate tactical scouting report for a player (e.g. Virat Kohli ID: 7)
+POST {{CricketAnalyzer.API_HostAddress}}/api/analysis/player/7
+Content-Type: application/json
+
+{
+  "customFocus": "Pacing in T20 death overs and handling express left-arm pace",
+  "opponentTeam": "Australia",
+  "format": "T20"
+}
+
+###
+
+### 8. AI Analysis: Get all historical scouting analyses for player 7
+GET {{CricketAnalyzer.API_HostAddress}}/api/analysis/player/7
+Accept: application/json
+
+###
+
+### 9. AI Analysis: Head-to-Head Comparison (Player 7 vs Player 4)
+POST {{CricketAnalyzer.API_HostAddress}}/api/analysis/compare
+Content-Type: application/json
+
+{
+  "player1Id": 7,
+  "player2Id": 4,
+  "matchFormat": "ODI",
+  "pitchCondition": "Turning track in Colombo with grip and bounce"
+}
+
+###
+
+### 10. AI Analysis: Get specific analysis report by ID
+GET {{CricketAnalyzer.API_HostAddress}}/api/analysis/1
+Accept: application/json
