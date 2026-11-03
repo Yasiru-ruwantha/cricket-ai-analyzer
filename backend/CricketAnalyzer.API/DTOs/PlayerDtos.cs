@@ -19,6 +19,23 @@ public class CreatePlayerDto
     public string? BowlingStyle { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public string? ImageUrl { get; set; }
+    public CreatePlayerStatisticsDto? Statistics { get; set; }
+}
+
+public class CreatePlayerStatisticsDto
+{
+    public string Format { get; set; } = "Overall";
+    public int MatchesPlayed { get; set; }
+    public int TotalRuns { get; set; }
+    public decimal BattingAverage { get; set; }
+    public decimal StrikeRate { get; set; }
+    public int HighestScore { get; set; }
+    public int Centuries { get; set; }
+    public int Fifties { get; set; }
+    public int TotalWickets { get; set; }
+    public decimal BowlingAverage { get; set; }
+    public decimal BowlingEconomy { get; set; }
+    public string? BestBowlingFigures { get; set; }
 }
 
 public class UpdatePlayerDto
@@ -38,6 +55,7 @@ public class UpdatePlayerDto
     public string? BowlingStyle { get; set; }
     public DateTime? DateOfBirth { get; set; }
     public string? ImageUrl { get; set; }
+    public CreatePlayerStatisticsDto? Statistics { get; set; }
 }
 
 public class PlayerResponseDto
@@ -53,6 +71,14 @@ public class PlayerResponseDto
     public string? ImageUrl { get; set; }
     public DateTime CreatedAt { get; set; }
     public PlayerStatisticsDto? Statistics { get; set; }
+    public FormatStatsDto? FormatStats { get; set; }
+}
+
+public class FormatStatsDto
+{
+    public PlayerStatisticsDto? T20 { get; set; }
+    public PlayerStatisticsDto? Odi { get; set; }
+    public PlayerStatisticsDto? Test { get; set; }
 }
 
 public class PlayerStatisticsDto
